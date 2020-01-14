@@ -1,0 +1,78 @@
+<ul class="breadcrumbs">
+  <li><a [routerLink]="['/admin/group']">Групи</a></li>
+  <li>{{isNew? 'Додати': 'Редагувати'}} групу</li>
+</ul>
+
+<p class="noData" *ngIf="hasError">
+    Невірний формат запиту<br/>
+    <span>поверніться до списку та повторіть спробу</span>
+</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="card" [hidden]='hasError'>
+    <div class="card-content">
+      <h5 class="center">{{group? 'Редагувати групу': 'Додати групу'}}</h5>
+      <span>
+        <button
+          *ngIf="!isNew"
+          class="btn btn-small red right btn-delete"
+          (click)="delete()"
+          type="button"
+        >
+          <i class="material-icons">delete</i>
+        </button>
+      </span>
+      <br>
+      <div class="input-field col s12">
+        <input 
+          id="title"
+          type="text" 
+          formControlName="title"  
+          [ngClass]="{'invalid': form.get('title').invalid && form.get('title').touched }"       
+        >
+        <label for="title">Назва групи</label>
+        <span class="helper-text red-text"
+        *ngIf="form.get('title').invalid && form.get('title').touched"
+        >
+          <span *ngIf="form.get('title').errors['required']">Поле не може бути пустим</span>
+        </span>
+      </div>
+
+      <div *ngIf="isLoaded; else loadingSelects">
+        <app-select 
+        id="selectCourse"
+        label="Курс"
+        default="Виберіть курс"
+        [items]="courses"
+        formControlName="courseId"
+        *ngIf="courses">
+      </app-select>
+
+      <app-select 
+        id="selectSpecialty"
+        label="Спеціальність" 
+        default="Виберіть спеціальність"
+        [items]="specialties"
+        formControlName="specialtyId"
+        *ngIf="specialties"
+       >
+      </app-select>
+    </div>
+      <ng-template #loadingSelects>
+        <app-loader size='small'></app-loader>
+      </ng-template>
+
+    </div>
+    <div class="card-action">
+      <button 
+      class="btn"
+      type="submit"
+      [disabled]="form.invalid || form.disabled || !form.dirty"
+      >{{group? 'Редагувати':'Зберегти'}}</button>
+  
+      <a
+      [routerLink]="['/admin/group']"
+      class="btn-flat"
+    >Відмінити</a>
+    </div>
+  </form>    
+  

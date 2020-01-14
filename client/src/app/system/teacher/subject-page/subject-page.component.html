@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="page-title">
+    <h4>Мої предмети</h4>
+    <button 
+    class="waves-effect waves-light btn grey darken-1"
+    [routerLink]="['new']"
+    >Додати предмет</button>
+</div>
+
+<div class="row" *ngIf="subjects$ | async as subjects; else loader">  
+  <div class="collection" *ngIf="subjects.length > 0; else listEmpty">
+      <a 
+        *ngFor="let s of subjects"
+        class="collection-item"
+        [routerLink]="s._id">{{s.title}}</a>
+  </div>
+  
+  <ng-template #listEmpty>
+    <p class="center">Предмети відсутні.</p>
+  </ng-template>
+</div>
+  
+<ng-template #loader>
+    <app-loader size="big"></app-loader>
+</ng-template>
+
+

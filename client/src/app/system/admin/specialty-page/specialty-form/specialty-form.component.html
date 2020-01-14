@@ -1,0 +1,59 @@
+<ul class="breadcrumbs">
+  <li><a [routerLink]="['/admin/specialty']">Спеціальності</a></li>
+  <li>{{isNew? 'Додати': 'Редагувати'}} спеціальність</li>
+</ul>
+
+<p class="noData" *ngIf="hasError">
+    Невірний формат запиту<br/>
+    <span>поверніться до списку та повторіть спробу</span>
+</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="card" [hidden]="hasError">
+  <div class="card-content">
+      <h5 class="center">{{isNew? 'Додати спеціальність' : 'Редагувати спеціальність'}}</h5>
+      <span>
+          <button
+            *ngIf="!isNew"
+            class="btn btn-small red right btn-delete"
+            (click)="delete()"
+            type="button"
+          >
+            <i class="material-icons">delete</i>
+          </button>
+        </span>
+      <br>
+      <div class="input-field">
+        <input 
+          id="title"
+          type="text" 
+          autocomplete="off"
+          formControlName="title"  
+          [ngClass]="{'invalid': form.get('title').invalid && form.get('title').touched }"       
+        >
+        <label for="title">Назва спеціальності</label>
+        <span class="helper-text red-text"
+        *ngIf="form.get('title').invalid && form.get('title').touched"
+        >
+          <span *ngIf="form.get('title').errors['required']">Поле не може бути пустим</span>
+        </span>
+      </div>
+  </div>
+  <div class="card-action">
+    <button 
+      class="btn"
+      type="submit"
+      [disabled]="form.invalid || form.disabled || !form.dirty"
+    >{{isNew? 'Зберегти':'Редагувати'}}</button>
+
+    <a
+      [routerLink]="['/admin/specialty']"
+      class="btn-flat"
+    >Відмінити</a>
+  </div>
+</form>    
+
+
+  
+
+
+

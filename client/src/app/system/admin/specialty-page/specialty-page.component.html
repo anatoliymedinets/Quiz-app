@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="page-title">
+      <h4>Спеціальності</h4>
+      <button 
+      class="waves-effect waves-light btn"
+      [routerLink]="['new']"
+      >Додати спеціальність</button>
+  </div>
+</div>
+
+<div class="row" *ngIf="specialties$ | async as specialties; else loader">  
+  <div class="collection" *ngIf="specialties.length > 0; else listEmpty">
+      <a 
+        *ngFor="let s of specialties"
+        class="collection-item"
+        [routerLink]="s._id">{{s.title}}</a>
+    </div>
+
+  <ng-template #listEmpty>
+    <p class="center">Спеціальності відсутні.</p>
+  </ng-template>
+</div>
+
+<ng-template #loader>
+    <app-loader size="big"></app-loader>
+</ng-template>
+
+
+  

@@ -1,0 +1,46 @@
+
+<ul class="breadcrumbs">
+  <li><a [routerLink]="['/teacher/subject']">Предмети</a></li>
+  <li *ngIf="subject">{{subject.title}} ( <a routerLink="edit" class="orange-text">Редагувати</a> )</li>
+</ul>
+
+<div class="row">
+  <h5 class="center">Виберіть курс</h5>
+  <div class="courses-container">  
+    <ul class="courses">
+      <li class="course active" 
+          *ngFor="let c of courses"
+          (click)="selectedCourse=c"
+          [ngClass]="{'active': selectedCourse===c}"
+      >
+      {{c.title}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row" *ngIf="selectedCourse">
+  <h5 class="center">Вкажіть спеціальність</h5>
+  <div class="center">
+    <label>
+      <input type="checkbox" [(ngModel)]="isAll"/>
+      <span>Для всіх спеціальностей курса</span>
+    </label>
+  </div>
+  <div class="specialties-container col s12"
+    *ngIf="!isAll"  
+  >
+    <div class="special card" 
+        *ngFor="let s of specialties"
+        (click)="selectedSpecialty=s"
+        [ngClass]="{'active': selectedSpecialty===s}"
+        >{{ s.title }}</div>
+  </div>
+</div>
+
+<div class="center" 
+    *ngIf="isAll || selectedSpecialty"
+>
+  <button class="btn" (click)="createPlanning()">Створити план</button>
+</div>
+

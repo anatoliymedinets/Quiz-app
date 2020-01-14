@@ -1,0 +1,16 @@
+<nav>
+  <div class="nav-wrapper">
+      <a routerLink="/" class="brand-logo">Quiz</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li routerLinkActive="active"><a [routerLink]="[ '/auth/login' ]" >Вхід</a></li>
+          <li routerLinkActive="active"><a [routerLink]="[ '/auth/register']" >Реєстрація</a></li>
+      </ul>
+  </div>
+</nav>
+
+<div class="row auth-block">
+    <div class="col s12">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

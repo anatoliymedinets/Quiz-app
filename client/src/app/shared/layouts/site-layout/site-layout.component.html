@@ -1,0 +1,57 @@
+<div class="container-fluid">
+
+      <div class="sidenav sidenav-fixed a-sidenav hide-on-med-and-down">
+          <nav>
+                <div class="nav-wrapper">
+                <span class="cab">Персональний кабінет</span>
+              </div>
+            </nav>
+          <ul>
+            <li 
+              routerLinkActive="active"
+              *ngFor="let l of links"
+            >
+              <a 
+                [routerLink]="[l.url]" 
+                class="waves-effect waves-custom">{{l.title}}</a>
+            </li>
+            <li><a href="#" (click)="logout($event)" class="waves-effect waves-custom">Вихід</a></li>
+        </ul>
+      </div>
+
+      <ul id="slide-out" class="sidenav" #sidenav>
+        
+        <div class="side-header">
+            <h5>Персональний кабінет</h5>
+            <p>{{getRoleName(user.roleId)}} : {{user.fullName}}</p>
+        </div>
+          
+          <li 
+            routerLinkActive="active"
+            *ngFor="let l of links"
+          ><a 
+            [routerLink]="[l.url]" 
+            class="waves-effect waves-custom">{{l.title}}</a>
+          </li>
+          <li><a href="#" (click)="logout($event)" class="waves-effect waves-custom">Вихід</a></li>
+      </ul>
+    
+    <main>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <div class="brand-logo">
+                  Quiz
+                </div>
+                <span class="prof-name hide-on-med-and-down">{{getRoleName(user.roleId)}} : {{user.fullName}}</span>
+            </div>
+          </nav>
+          <div class="content">
+            <router-outlet></router-outlet>
+          </div>
+    </main>
+
+    
+</div>
+
+

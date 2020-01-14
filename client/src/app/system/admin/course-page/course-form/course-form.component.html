@@ -1,0 +1,62 @@
+<ul class="breadcrumbs">
+  <li><a [routerLink]="['/admin/course']">Курси</a></li>
+  <li>{{isNew? 'Додати': 'Редагувати'}} курс</li>
+</ul>
+
+<p class="noData" *ngIf="hasError">
+    Невірний формат запиту<br/>
+    <span>поверніться до списку та повторіть спробу</span>
+</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="card" [hidden]="hasError">
+  <div class="card-content">
+    <h5 class="center">{{isNew? 'Додати курс' : 'Редагувати курс'}}</h5>
+    <span>
+      <button
+        *ngIf="!isNew"
+        class="btn btn-small red right btn-delete"
+        (click)="delete()"
+        type="button"
+      >
+        <i class="material-icons">delete</i>
+      </button>
+    </span>
+  <br>
+    <div class="input-field col s12">
+      <input 
+        id="title"
+        type="text" 
+        formControlName="title"  
+        [ngClass]="{'invalid': form.get('title').invalid && form.get('title').touched }"       
+      >
+      <label for="title">Назва курсу</label>
+      <span class="helper-text red-text"
+      *ngIf="form.get('title').invalid && form.get('title').touched"
+      >
+        <span *ngIf="form.get('title').errors['required']">Поле не може бути пустим</span>
+      </span>
+    </div>
+    <div class="input-field col s12">
+      <textarea  
+        #textarea
+        id="description"
+        class="materialize-textarea"
+        formControlName="description"      
+      ></textarea>
+      <label for="description">Опис:</label>
+    </div>
+  </div>
+  <div class="card-action">
+    <button 
+      class="btn"
+      type="submit"
+      [disabled]="form.invalid || form.disabled || !form.dirty"
+    >{{isNew? 'Зберегти':'Редагувати'}}</button>
+
+    <a
+      [routerLink]="['/admin/course']"
+      class="btn-flat"
+    >Відмінити
+  </a>
+  </div>
+</form>    

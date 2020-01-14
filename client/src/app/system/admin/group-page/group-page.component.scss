@@ -1,0 +1,29 @@
+.collapsible-header{
+  justify-content: space-between;
+}
+
+.speciality-title{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.speciality-container{
+  padding: 0 1.5rem;
+}
+
+.collapsible > li{
+  i{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    transition: .3s;
+    user-select: none;      
+  }
+  &.active
+  i{
+    border: 1px solid var(--D2);
+    background: var(--D2);
+    transform: rotate(180deg);
+    transition: .3s;
+  }
+}

@@ -1,0 +1,18 @@
+<div class="input-field col s12">
+  <select  #select 
+    id="{{controlId}}"
+    (change)="changeValue($event.target.value)" 
+  >
+    <option *ngFor="let item of items"
+    [selected]="item._id==value"
+     [disabled]="item._id===''"
+     [value]="item._id"
+     >
+     {{item.title}}
+    </option>
+  </select>
+  <label for="{{controlId}}">
+    {{label}}
+  </label>
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,19 @@
+:root{
+  --D1:#fafafa;
+  --D2:#ddd;
+  --D3:#afafaf;
+  --primary:  #389be5;
+  --primary-light: #5fc3f9;
+  --primary-dark: #285799;
+  --success: var(--primary);
+  --warning: #fd7a00;
+  --danger:#F44336;
+  --text-light: #ffffff;
+  --text-dark: #39393D;
+  //--------------------------------
+
+  --waves: var(--primary-light);
+  --btn-bg:var(--primary);
+  --btn-bg-hover:var(--primary-dark);
+  --btn-bg-focus:var(--primary-dark);
+}

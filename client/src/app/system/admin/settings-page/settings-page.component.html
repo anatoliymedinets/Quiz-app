@@ -1,0 +1,42 @@
+<div class="page-title">
+  <h4>Налаштування</h4>
+</div>
+
+<form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="card-content">
+      <div class="input-field col s12">
+          <input 
+            id="teacherKey"
+            type="text" 
+            class="validate"
+            formControlName="teacherKey">
+          <label for="teacherKey">Ключ учителя</label>
+          <span class="helper-text red-text"
+          *ngIf="form.get('teacherKey').invalid && form.get('teacherKey').touched"
+          >
+            <span *ngIf="form.get('teacherKey').errors['required']">Поле не може бути пустим</span>
+        </span>
+      </div>
+      <div class="input-field col s12">
+          <input 
+            id="studentKey" 
+            type="text" 
+            class="validate"
+            formControlName="studentKey">
+          <label for="studentKey">Ключ студента</label>
+          <span class="helper-text red-text"
+          *ngIf="form.get('studentKey').invalid && form.get('studentKey').touched"
+          >
+            <span *ngIf="form.get('studentKey').errors['required']">Поле не може бути пустим</span>
+        </span>
+      </div>
+  </div>
+  <div class="card-action">
+    <button 
+      type="submit" 
+      class="btn"
+      [disabled]="form.invalid || form.disabled || !form.dirty"
+    >Зберегти</button>
+  </div>
+
+</form>

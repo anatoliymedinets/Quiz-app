@@ -1,0 +1,35 @@
+#modal{
+  max-width:500px;
+  height: 350px;
+}
+
+.frow {
+  display: flex;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.course-row {
+  flex-wrap: wrap;
+}
+.course-row .card {
+  width: 30%;
+  min-width: 250px;
+  margin-right: 20px;
+}
+
+@media (max-width:992px) {
+  .course-row .card {
+    width: 45%;
+    min-width: 250px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width:700px) {
+  .course-row .card {
+    width: 100%;
+    min-width: 250px;
+    margin-right: 20px;
+  }
+}
